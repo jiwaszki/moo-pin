@@ -6,7 +6,7 @@
 // Main function to demonstrate blinking an LED on a specified GPIO pin
 int main() {
     // Initialize the Board object
-    auto board = moo::BoardManager::create_board("MILKV_DUO_64");
+    auto board = moo::BoardManager::create_board(moo::BoardType::MILKV_DUO_64);
 
     // Set the pin as an output
     // (pin export/initalization happens under the hood)
