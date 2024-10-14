@@ -16,6 +16,33 @@ public:
     BaseBoard(const std::string& board_name, BaseConfig* config)
         : board_name(board_name), config(config) {}
 
+    std::shared_ptr<Pin> get_pin(int pin_number) {
+        if (pins.find(pin_number) == pins.end()) {
+            // If not found, export pin first:
+            export_pin(pin_number);
+            // Construct the paths for the GPIO pin
+            std::string direction_path = config->gpio_base_path + std::to_string(pin_number) + "/direction";
+            std::string value_path = config->gpio_base_path + std::to_string(pin_number) + "/value";
+            // Create a Pin object and store it in the pins map
+            pins[pin_number] = std::make_shared<Pin>(pin_number, direction_path, value_path);
+        }
+        return pins[pin_number];
+    }
+
+    void release_pin(int pin_number) {
+        if (pins.find(pin_number) != pins.end()) {
+            unexport_pin(pin_number);
+            pins.erase(pin_number);
+        }
+    }
+
+    ~BaseBoard() {
+        for (auto &pair : pins) {
+            unexport_pin(pair.first);
+        }
+    }
+
+protected:
     virtual void export_pin(int pin_number) {
         // Export the pin number
         std::ofstream export_file(config->gpio_export_path);
@@ -36,23 +63,6 @@ public:
         unexport_file.close();
     }
 
-    void initialize_pin(int pin_number) {
-        // Construct the paths for the GPIO pin
-        std::string direction_path = config->gpio_base_path + std::to_string(pin_number) + "/direction";
-        std::string value_path = config->gpio_base_path + std::to_string(pin_number) + "/value";
-
-        // Create a Pin object and store it in the pins map
-        pins[pin_number] = std::make_shared<Pin>(pin_number, direction_path, value_path);
-    }
-
-    std::shared_ptr<Pin> get_pin(int pin_number) {
-        if (pins.find(pin_number) == pins.end()) {
-            initialize_pin(pin_number);
-        }
-        return pins[pin_number];
-    }
-
-protected:
     std::string board_name; // Name of the board TODO?
     BaseConfig* config; // Pointer to configuration object
     std::unordered_map<int, std::shared_ptr<Pin>> pins;

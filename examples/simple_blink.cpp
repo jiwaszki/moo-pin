@@ -8,10 +8,8 @@ int main() {
     // Initialize the Board object
     auto board = moo::BoardManager::create_board("MILKV_DUO_64");
 
-    // Initialize a Pin object for GPIO pin 440
-    board->export_pin(440);
-
     // Set the pin as an output
+    // (pin export/initalization happens under the hood)
     // pin_at or get_pin?
     board->get_pin(440)->set_mode(moo::PinMode::OUTPUT);
 
@@ -25,7 +23,9 @@ int main() {
         usleep(500000); // Sleep for 500ms
     }
 
-    board->unexport_pin(440);
+    // It would also happen automatically if not mentioned.
+    // Board class destructor will manage it.
+    board->release_pin(440);
 
     return 0;
 }
