@@ -1,5 +1,5 @@
-#ifndef MO_PIN_H
-#define MO_PIN_H
+#ifndef MO_PIN_H  // MO_PIN_H to avoid conflicts with MOO_PIN_H in moo-pin.h
+#define MO_PIN_H 
 
 #include <fstream>
 #include <stdexcept>
