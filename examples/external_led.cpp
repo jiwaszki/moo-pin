@@ -14,12 +14,14 @@ int main() {
     // pin_at or get_pin?
     board->get_pin(POWER_PIN)->set_mode(moo::PinMode::OUTPUT);
 
-    // Blink the pin forever
-    while (true) {
+    // Blink the pin
+    size_t i = 0;
+    while (i < 5) {
         board->get_pin(POWER_PIN)->write(moo::PinState::HIGH);
         usleep(1000000); // Sleep for 1000ms
         board->get_pin(POWER_PIN)->write(moo::PinState::LOW);
         usleep(1000000); // Sleep for 1000ms
+        i++;
     }
 
     // Board class destructor will manage it.

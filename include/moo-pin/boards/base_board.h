@@ -31,8 +31,8 @@ public:
     }
 
     void release_pin(int pin_number) {
+        unexport_pin(pin_number);
         if (pins.find(pin_number) != pins.end()) {
-            unexport_pin(pin_number);
             pins.erase(pin_number);
         }
     }
