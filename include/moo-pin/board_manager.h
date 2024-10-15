@@ -2,7 +2,6 @@
 #define BOARD_MANAGER_H
 
 #include <memory>
-#include <string>
 
 #include "moo-pin/boards/base_board.h"
 #include "moo-pin/boards/milkv_duo_64_board.h"

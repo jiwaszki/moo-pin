@@ -1,6 +1,7 @@
 #ifndef BASE_BOARD_H
 #define BASE_BOARD_H
 
+#include <memory>
 #include <unordered_map>
 #include <string>
 #include <fstream>

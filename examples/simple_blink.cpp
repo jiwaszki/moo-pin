@@ -1,12 +1,12 @@
 #include <iostream>
 #include <unistd.h>
 
-#include <moo-pin/board_manager.h> // think about changing to "moo.h" like "pybind11" that will encapsulates all important commands
+#include <moo-pin/moo-pin.h>
 
 // Main function to demonstrate blinking an LED on a specified GPIO pin
 int main() {
     // Initialize the Board object
-    auto board = moo::BoardManager::create_board(moo::BoardType::MILKV_DUO_64);
+    auto board = moo::use_board(moo::BoardType::MILKV_DUO_64);
 
     // Set the pin as an output
     // (pin export/initalization happens under the hood)
