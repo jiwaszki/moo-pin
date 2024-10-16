@@ -3,6 +3,8 @@
 
 #include "moo-pin/board_manager.h"
 #include "moo-pin/pin.h"
+#include "moo-pin/i2c.h"
+#include "moo-pin/displays/ssd1306.h"
 // Add headers here
 
 namespace moo {

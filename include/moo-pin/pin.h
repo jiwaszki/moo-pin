@@ -50,8 +50,13 @@ namespace details {
 
 class Pin {
 public:    
-    Pin(int number, const std::string& mode_path, const std::string& state_path)
-        : pin_number(number), mode_path(mode_path), state_path(state_path) {}
+    Pin(int number, const std::string& gpio_base_path)
+        : pin_number(number)
+    {
+        mode_path = gpio_base_path + std::to_string(pin_number) + "/direction";
+        state_path = gpio_base_path + std::to_string(pin_number) + "/value";
+
+    }
 
     void set_mode(PinMode mode) {
         // Implementation for setting the pin mode
