@@ -11,7 +11,8 @@ public:
     MilkVDuo64Config()
         : BaseConfig("/sys/class/gpio/gpio",
                      "/sys/class/gpio/export",
-                     "/sys/class/gpio/unexport") {}
+                     "/sys/class/gpio/unexport",
+                     "/dev/i2c-") {}
           // , group_a_start(1234) {} // Specific to Milk-V Duo 64
 
     // std::optional<int> group_a_start; // Optional parameter for specific boards
