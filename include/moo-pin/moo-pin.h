@@ -1,7 +1,7 @@
 #ifndef MOO_PIN_H
 #define MOO_PIN_H
 
-#include "moo-pin/board_manager.h"
+#include "moo-pin/boards/board_manager.h"
 #include "moo-pin/pin.h"
 #include "moo-pin/i2c.h"
 #include "moo-pin/displays/ssd1306.h"
