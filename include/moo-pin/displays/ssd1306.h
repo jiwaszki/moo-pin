@@ -38,10 +38,10 @@
 #define SSD1306_COMM_DISABLE_SCROLL 0x2e
 #define SSD1306_COMM_ENABLE_SCROLL  0x2f
 #define SSD1306_COMM_PAGE_NUMBER    0xb0
-// SSD1306_COMM_LOW_COLUMN originally 0x00 moved to 0x01 and back
+// SSD1306_COMM_LOW_COLUMN originally 0x00 moved to 0x01
 // that created a "trash" column on the edge, fixed with this?
 #define SSD1306_COMM_LOW_COLUMN     0x00
-// SSD1306_COMM_LOW_COLUMN originally 0x10 moved to 0x11 and back
+// SSD1306_COMM_LOW_COLUMN originally 0x10 moved to 0x11
 // that created a "trash" column on the edge, fixed with this?
 #define SSD1306_COMM_HIGH_COLUMN    0x10
 
@@ -428,7 +428,7 @@ public:
 
     void clear_line(uint8_t row)
     {
-        if (row >= (max_lines / 8)) {
+        if (row > (max_lines / 8)) {
             throw std::runtime_error("Row number is not in the range!");
         }
             
@@ -444,7 +444,7 @@ public:
 
     void clear_screen()
     {        
-        for (uint8_t i = 0; i < (max_lines / 8); i++)
+        for (uint8_t i = 0; i <= (max_lines / 8); i++)
         {
             clear_line(i);
         }        
