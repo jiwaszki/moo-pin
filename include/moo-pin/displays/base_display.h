@@ -4,11 +4,10 @@
 namespace moo {
 
 class BaseDisplay {
-public:
+  public:
     BaseDisplay() {}
 };
 
 } // namespace moo
-
 
 #endif // BASE_DISPLAY_H

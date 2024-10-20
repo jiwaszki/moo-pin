@@ -7,10 +7,9 @@
 namespace moo {
 
 class MilkVDuo64Board : public BaseBoard {
-public:
-    MilkVDuo64Board()
-        : BaseBoard("MILKV_DUO_64", new MilkVDuo64Config()) {}
-    
+  public:
+    MilkVDuo64Board() : BaseBoard("MILKV_DUO_64", new MilkVDuo64Config()) {}
+
     // You can override methods or add specific functionalities here
 };
 

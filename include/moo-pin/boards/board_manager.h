@@ -14,7 +14,7 @@ enum class BoardType {
 };
 
 class BoardManager {
-public:
+  public:
     static std::unique_ptr<BaseBoard> create_board(const BoardType board_type) {
         if (board_type == BoardType::MILKV_DUO_64) {
             return std::make_unique<MilkVDuo64Board>();

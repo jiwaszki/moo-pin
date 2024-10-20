@@ -17,7 +17,8 @@ int main() {
     // Example of manual use of the display interface
     /////////////////////////////////////////////////
 
-    // auto display = std::make_shared<moo::SSD1306>(1, board->get_config()->i2c_base_path);
+    // auto display = std::make_shared<moo::SSD1306>(1,
+    // board->get_config()->i2c_base_path);
 
     // display->default_config(LINES, COLUMNS);
     // display->load_resolution();
