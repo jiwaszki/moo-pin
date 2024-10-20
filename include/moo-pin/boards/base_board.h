@@ -8,6 +8,7 @@
 #include <stdexcept>
 
 #include "moo-pin/configs/base_config.h"
+#include "moo-pin/displays/display.h"
 #include "moo-pin/pin.h"
 #include "moo-pin/i2c.h"
 
@@ -20,6 +21,14 @@ public:
 
     BaseConfig* get_config() {
         return config;
+    }
+
+    // TODO:
+    // Add connected displays as a way to store them and
+    // disconnect when board is closing as well
+    template <typename T, typename... Args>
+    std::shared_ptr<Display<T>> get_display(Args&&... args) {
+        return std::make_shared<Display<T>>(std::forward<Args>(args)..., config->i2c_base_path);
     }
 
     std::shared_ptr<Pin> get_pin(int pin_number) {

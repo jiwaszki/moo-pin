@@ -4,6 +4,15 @@
 #include <stdint.h>
 #include <inttypes.h>
 
+namespace moo {
+
+  enum class FontType {
+    SMALL = 0,
+    LARGE = 1
+  };
+
+} // namespace moo
+
 const uint8_t font5x7[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, // SPACE
   0x00, 0x00, 0x5F, 0x00, 0x00, // !
