@@ -46,7 +46,11 @@ int main() {
     // There is no need to add x and y, this is just for demo.
     // NOTE: It will automatically start from (0,0).
     display->write(msg_str, 20, 1);
-    
+
+    // To turn the Display on or off
+    // display->on();
+    // display->off();
+
     // To clear the board use:
     // display->clear();
 

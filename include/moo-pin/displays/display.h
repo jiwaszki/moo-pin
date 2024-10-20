@@ -17,6 +17,8 @@ public:
     virtual ~Display() {}
 
     virtual void close() = 0;
+    virtual void on() = 0;
+    virtual void off() = 0;
     virtual void set_cursor(int x, int y) = 0;
     virtual void set_font(moo::FontType font) = 0;
     virtual void write(char* message, int x = 0, int y = 0) = 0;
@@ -48,6 +50,14 @@ public:
 
     void close() {
         display->close();
+    }
+
+    void on() {
+        display->onoff(1);
+    }
+
+    void off() {
+        display->onoff(0);
     }
 
     void set_cursor(int x, int y) {
