@@ -45,7 +45,13 @@ template <> class Display<moo::SSD1306> {
         current_font = static_cast<uint8_t>(moo::FontType::SMALL);
     }
 
-    void close() { display->close(); }
+    void close(bool clean_up = false) {
+        if (clean_up) {
+          display->clear_screen();
+          display->onoff(0);
+        }
+        display->close();
+    }
 
     void on() { display->onoff(1); }
 
