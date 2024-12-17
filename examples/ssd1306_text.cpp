@@ -1,3 +1,6 @@
+#include <chrono>
+#include <thread>
+
 #include <moo-pin/moo-pin.h>
 
 // Dimensions of the display (adjust to the connected screen):
@@ -5,10 +8,9 @@
 #define LINES 32
 
 int main() {
-    // Note: To add new lines with "\\n" due to implementation.
-    // Note: Require to add spaces for some reason on some displays...
-    char msg[LINES * COLUMNS] = " Hello MilkV!\\n This is new line...\\n";
-    std::string msg_str = " Hello MilkV!\\n This is new line...\\n";
+    // NOTE: To add new lines with "\\n" due to implementation.
+    // NOTE: Required to add spaces on some displays...
+    std::string first_msg = " Hello MilkV!\\n This is new line...\\n";
 
     // Initialize the Board object:
     auto board = moo::use_board(moo::BoardType::MILKV_DUO_64);
@@ -27,6 +29,7 @@ int main() {
     // // NOTE: Clearing the screen moves the cursor!
     // display->set_XY(0, 0);
 
+    // char msg[LINES * COLUMNS] = " Hello MilkV!\\n This is new line...\\n";
     // display->write_string(0, &msg[0]);
 
     // display->close();
@@ -39,23 +42,32 @@ int main() {
     // use_display or get_display or connect_display?
     auto display = board->get_display<moo::SSD1306>(LINES, COLUMNS, 1);
 
-    // display.set_cursor()
-    // display.set_font(moo::FontType::SMALL); // or LARGE
-
-    // Alternative way of using it:
-    // display->write(&msg[0]);
     // There is no need to add x and y, this is just for demo.
     // NOTE: It will automatically start from (0,0).
-    display->write(msg_str, 20, 1);
-
-    // To turn the Display on or off
-    // display->on();
-    // display->off();
-
     // To clear the board use:
-    // display->clear();
+    display->clear();
+    // Write first message:
+    display->write(first_msg, 20, 1);
 
-    display->close();
+    // Showcase the Display on and off capabilites.
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    display->off();
+
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    display->on();
+    display->clear();
+    std::string second_msg = " Goodbye MilkV!";
+    display->write(second_msg, 20, 1);
+
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    // NOTE: display will stay turned on with the last message
+    //       if this is not required explicitly. 
+    // To manually clean-up, turn display off and close connection:
+    // display->clear();
+    // display->off();
+    // display->close();
+    // Or use the short version:
+    display->close(true);
 
     return 0;
 }
